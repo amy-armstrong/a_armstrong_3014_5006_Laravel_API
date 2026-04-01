@@ -1,0 +1,38 @@
+html {
+	scroll-behavior: smooth;
+  }
+
+body {
+	font-family: "Lato", sans-serif;
+	padding: 20px 20px 0 20px;
+}
+
+#bookInfoCon {
+	margin-top: 40px;
+}
+
+h3 {
+	color:rgb(220, 20, 60);
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+
+#info-box img {
+	max-width: 100px;
+	margin-bottom: 20px;
+}
+
+.title {
+	font-weight: bold;
+	color:rgb(220, 20, 60);
+}
+
+footer {
+	margin-top: 40px;
+	height: 200px;
+	background-color: rgb(220, 20, 60);
+}
