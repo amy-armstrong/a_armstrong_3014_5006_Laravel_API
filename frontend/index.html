@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <title>Book Store API</title>
+    <title>Book Store API | Amy Armstrong</title>
     <link href="https://fonts.googleapis.com/css?family=Lato%7CRaleway" rel="stylesheet">
     <link href="css/grid.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -13,49 +13,65 @@
 </head>
 
 <body>
-<div class="grid-con" id="app">
-  <div class="col-span-full m-col-start-1 m-col-end-13">
-    <h2>My Favorite Books</h2>
-    <p>Enjoy your journey through the literary landscape of my fav reads</p>
-    <p>Click on a book title to find out more about it</p>
-    <div v-if="loadingBooks">
+<div id="app" class="grid-con">
+  
+  <header class="col-span-full m-col-start-1 m-col-end-13">
+    <h1>My Favorite Books</h1>
+    <p class="subtitle">Enjoy your journey through the literary landscape of my favorite reads.</p>
+    <p class="instruction">Click on a book title below to find out more.</p>
+  </header>
+
+  <section class="col-span-full m-col-span-6">
+    <div v-if="loadingBooks" class="loader-container">
       <img class="loader" src="images/loader.svg" alt="Loading Books">
     </div>
+
     <ul id="book-list" v-else>
-      <li v-for="book in booksData" :key="book.id">
+      <li v-for="book in booksData" :key="book.id" class="book-item">
         <h3>
-          Title:
-          <button @click="getBook(book.id)">
-            {{book.title}}
+          <button @click="getBook(book.id)" class="book-link">
+            {{ book.title }}
           </button>
         </h3>
       </li>
     </ul>
-  </div>
-  <div class="col-span-full m-col-start-1 m-col-end-13" ref="bookInfoCon">
-    <div v-if="loadingBookDetails">
+  </section>
+
+  <section class="col-span-full m-col-span-6" ref="bookInfoCon">
+    <div v-if="loadingBookDetails" class="loader-container">
       <img class="loader" src="images/loader.svg" alt="Loading Book Details">
     </div>
-    <div v-else-if="error">
-      {{error}}
+
+    <div v-else-if="error" class="error-box">
+      <p>{{ error }}</p>
+      <button @click="getBooks" class="retry-btn">Try Again</button>
     </div>
-    <div v-else-if="selectedBooks" id="info-box">
-      <img :src="selectedBooks.image_url" :alt="selectedBooks.author">
-      <p>
-      <span class="title">Author:</span>
-      {{selectedBooks.author}}
-      </p>
-      <p>
-      <span class="title">Published Year:</span>
-      {{selectedBooks.published}}
-      </p>
-      <p>
-      <span class="title">Description:</span>
-      {{selectedBooks.description}}
-      </p>
+
+    <article v-else-if="selectedBooks" id="info-box">
+      <div class="book-image-wrap">
+        <img :src="selectedBooks.image_url" :alt="selectedBooks.author" class="responsive-img">
+      </div>
+      
+      <div class="book-content">
+        <p><span class="label">Author:</span> {{ selectedBooks.author }}</p>
+        <p><span class="label">Published:</span> {{ selectedBooks.published }}</p>
+        <hr class="divider">
+        <p class="description">
+          <span class="label">Description:</span><br>
+          {{ selectedBooks.description }}
+        </p>
+      </div>
+    </article>
+
+    <div v-else class="placeholder">
+      <p>Select a title to view the details.</p>
     </div>
-  </div>
-  <footer class="col-span-full"></footer>
+  </section>
+
+  <footer class="col-span-full">
+    <p>&copy; 2026 Amy Armstrong | Designer & Developer</p>
+  </footer>
+
 </div>
 </body>
 </html>
