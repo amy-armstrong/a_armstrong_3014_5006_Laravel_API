@@ -1,78 +1,124 @@
+/* Colour Palette */
+$oak-dark: #2c2420;
+$library-green: #2e4d44;
+$parchment: #fdfaf5;
+$gold-leaf: #c5a059;
+$paper-border: #e0d7c6;
+
 html, body {
     scroll-behavior: smooth;
+    background-color: $parchment; 
 }
 
-body {
-	font-family: "Lato", sans-serif;
-}
+header {
+    margin-bottom: 40px;
+    
+    h1 {
+        color: $parchment;
+        background-color: $library-green;
+        padding: 20px;
+        border-left: 8px solid $gold-leaf;
+        font-size: 32px;
+        text-transform: uppercase;
+    }
 
-h2 {
-    color: #fff;
-    margin-top: 20px;
-    font-size: 38px;
-    margin-bottom: 20px;
-    background-color: rgb(220, 20, 60);
-    padding: 20px;
-    border-radius: 0px 20px 0 0px;
-}
-
-h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-p {
-    font-size: 20px;
-    margin-bottom: 20px;
+    .subtitle {
+        font-style: italic;
+        margin-top: 10px;
+    }
 }
 
 #book-list {
     list-style-type: none;
-    padding: 0;
-    font-size: 18px;
-    margin-top: 40px;
-    padding-top: 40px;
-    border-top: dashed 1px #333;
-    border-bottom: dashed 1px #333;
-    padding-bottom: 60px;
+    padding: 20px 0;
+    margin-top: 0; 
+    border-top: 1px solid $paper-border;
+    border-bottom: 1px solid $paper-border;
+
+    .book-item {
+        margin-bottom: 15px;
+        
+        .book-link {
+            background: none;
+            border: none;
+            color: $oak-dark;
+            cursor: pointer;
+            font-size: 18px;
+            text-align: left;
+            transition: color 0.3s ease;
+            
+            &:hover {
+                color: $library-green;
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
-#book-list li {
-    margin-bottom: 30px;
-}
+#info-box {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid $paper-border;
+    border-top: 4px solid $library-green;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
 
-button {
-  background: none;
-  border: none;
-  color: rgb(220, 20, 60);
-  padding: 0;
-  font-size: 20px;
-  cursor: pointer;
-  color: #333;
-  text-align: left;
-  max-width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-button:hover {
-  text-decoration: underline;
-}
-
-button:focus-visible {
-  outline: 2px solid rgb(220, 20, 60);
-  outline-offset: 2px;
-}
-
-.loader {
-    max-width: 100px;
-}
-
-@media screen and (min-width: 768px) {
-	#book-list {
-        column-count: 3;
+    .book-image-wrap {
+        margin-bottom: 20px;
+        img {
+            max-width: 150px;
+            height: auto;
+            border: 1px solid $paper-border;
+            padding: 5px;
+        }
     }
 
- }
+    .label {
+        font-weight: bold;
+        color: $gold-leaf;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+}
+
+.footer-credit {
+        font-weight: bold;
+        color: #2e4d44; // $library-green
+    }
+
+// Responsive layout
+@media screen and (min-width: 768px) {
+    #book-list {
+        column-count: 1; 
+    }
+}
+
+/* ... your existing book list and media query code ... */
+
+@media screen and (min-width: 768px) {
+    #book-list {
+        column-count: 1; 
+    }
+}
+
+footer {
+    margin-top: 80px; 
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px double #e0d7c6; // $paper-border
+    color: #4a3f35; // A lighter oak color
+    font-family: "Raleway", sans-serif;
+    clear: both; // Ensures it stays below the grid columns
+
+
+    p {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+
+    .footer-credit {
+        font-weight: bold;
+        color: #2e4d44; // $library-green
+    }
+}

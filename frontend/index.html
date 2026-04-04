@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <title>Book Store API | Amy Armstrong</title>
+    <title>My favourite books</title>
     <link href="https://fonts.googleapis.com/css?family=Lato%7CRaleway" rel="stylesheet">
     <link href="css/grid.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -15,62 +15,58 @@
 <body>
 <div id="app" class="grid-con">
   
-  <header class="col-span-full m-col-start-1 m-col-end-13">
-    <h1>My Favorite Books</h1>
-    <p class="subtitle">Enjoy your journey through the literary landscape of my favorite reads.</p>
-    <p class="instruction">Click on a book title below to find out more.</p>
+  <header class="col-span-full">
+    <h1>My Digital Archive</h1>
+    <p class="subtitle">A curated collection of literary journeys and books I enjoy.</p>
   </header>
 
   <section class="col-span-full m-col-span-6">
-    <div v-if="loadingBooks" class="loader-container">
-      <img class="loader" src="images/loader.svg" alt="Loading Books">
+    <div v-if="loadingBooks" class="loader-con">
+      <img class="loader" src="images/loader.svg" alt="Loading Catalog...">
     </div>
 
     <ul id="book-list" v-else>
       <li v-for="book in booksData" :key="book.id" class="book-item">
-        <h3>
-          <button @click="getBook(book.id)" class="book-link">
-            {{ book.title }}
-          </button>
-        </h3>
+        <button @click="getBook(book.id)" class="book-link">
+          {{ book.title }}
+        </button>
       </li>
     </ul>
   </section>
 
   <section class="col-span-full m-col-span-6" ref="bookInfoCon">
-    <div v-if="loadingBookDetails" class="loader-container">
-      <img class="loader" src="images/loader.svg" alt="Loading Book Details">
+    <div v-if="loadingBookDetails" class="loader-con">
+      <img class="loader" src="images/loader.svg" alt="Retrieving volume...">
     </div>
 
     <div v-else-if="error" class="error-box">
       <p>{{ error }}</p>
-      <button @click="getBooks" class="retry-btn">Try Again</button>
+      <button @click="getBooks" class="retry-btn">Refresh Archive</button>
     </div>
 
     <article v-else-if="selectedBooks" id="info-box">
       <div class="book-image-wrap">
-        <img :src="selectedBooks.image_url" :alt="selectedBooks.author" class="responsive-img">
+        <img :src="selectedBooks.image_url" :alt="selectedBooks.title">
       </div>
       
       <div class="book-content">
-        <p><span class="label">Author:</span> {{ selectedBooks.author }}</p>
-        <p><span class="label">Published:</span> {{ selectedBooks.published }}</p>
+        <h2>{{ selectedBooks.title }}</h2>
+        <p><span class="label">By</span> {{ selectedBooks.author }}</p>
+        <p><span class="label">Released</span> {{ selectedBooks.published }}</p>
         <hr class="divider">
-        <p class="description">
-          <span class="label">Description:</span><br>
-          {{ selectedBooks.description }}
-        </p>
+        <p class="description">{{ selectedBooks.description }}</p>
       </div>
     </article>
 
     <div v-else class="placeholder">
-      <p>Select a title to view the details.</p>
+      <p>Select a title to view the archive details.</p>
     </div>
   </section>
 
-  <footer class="col-span-full">
-    <p>&copy; 2026 Amy Armstrong | Designer & Developer</p>
-  </footer>
+<footer class="col-span-full">
+    <p>READ AND CURATED BY <span class="footer-credit">Amy Armstrong</span></p>
+    <p style="font-size: 10px; margin-top: 10px; opacity: 0.6;">idp laravel api</p>
+</footer>
 
 </div>
 </body>
